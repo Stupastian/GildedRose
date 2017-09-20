@@ -318,5 +318,24 @@ public class GildedRoseTest {
 		
 	}
 	
+	@Test
+	public void testUpdateEndOfDay_BackstageTicketQualityShouldNotBeNegative() {
+		// Arrange
+		GildedRose store = new GildedRose();
+		store.addItem(new Item("Backstage passes to a TAFKAL80ETC concert", 2, 10) );
+		
+		// Act
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		
+			
+		// Assert
+		List<Item> items = store.getItems();
+		Item itemPasses = items.get(0);
+		assertEquals("Backstage passes quality should be 0",0, itemPasses.getQuality());
+		
+	}
 	
 }
